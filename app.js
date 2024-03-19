@@ -3,11 +3,13 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const userRouter = require("./users/user.router");
+const businessRouter = require("./business/business.router");
 
 //we are converting json object to javascript object
 app.use(express.json());
 
 app.use("/users", userRouter);
+app.use("/business", businessRouter);
 // app.get("/api", (req, res)=>{
 //     res.json({
 //         success: 1,
