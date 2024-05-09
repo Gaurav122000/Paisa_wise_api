@@ -4,7 +4,7 @@ const pool = require("../config/database");
 module.exports = {
     create: (data, callback) => {
         pool.query(
-            `insert into registration(firstName, lastName, gender, number, email, password)
+            `insert into signUp(firstName, lastName, gender, number, email, password)
                 values(?,?,?,?,?,?)
             `,
             [
@@ -26,7 +26,7 @@ module.exports = {
 
     getUsers: callBack => {
         pool.query(
-            `select id, firstName, lastName, gender, email, number from registration`,
+            `select id, firstName, lastName, gender, email, number from signUp`,
             [],
             (error, results, fields) => {
                 if (error) {
@@ -39,7 +39,7 @@ module.exports = {
 
     getUserByUserId: (id, callBack) => {
         pool.query(
-            `select id, firstName, lastName, gender, email, number from registration where id = ?`,
+            `select id, firstName, lastName, gender, email, number from signUp where id = ?`,
             [id],
             (error, results, fields) => {
                 if (error) {
@@ -52,7 +52,7 @@ module.exports = {
 
     updateUser: (data, callback) => {
         pool.query(
-            `update registration set firstName=?, lastName=?, gender=?, number=?, email=?, password=? where id = ?`,
+            `update signUp set firstName=?, lastName=?, gender=?, number=?, email=?, password=? where id = ?`,
             [
                 data.first_name,
                 data.last_name,
@@ -73,7 +73,7 @@ module.exports = {
 
     deleteUsers: (data, callBack) => {
         pool.query(
-            `delete from registration where id = ?`,
+            `delete from signUp where id = ?`,
             [data.id],
             (error, results, fields) => {
                 if (error) {
@@ -87,7 +87,7 @@ module.exports = {
     //For login page
     getUserByUserEmail: (email, callBack) => {
         pool.query(
-            `select * from registration where email = ?`,
+            `select * from signUp where email = ?`,
             [email],
             (error, results, fields) => {
                 if (error) {
